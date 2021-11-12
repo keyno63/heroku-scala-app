@@ -7,6 +7,7 @@ scalaVersion := "2.13.7"
 val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.38.2"
 val calibanVersion = "1.2.2"
+val guiceVersion = "4.2.2"
 
 lazy val akkaSample = project
   .in(file("."))

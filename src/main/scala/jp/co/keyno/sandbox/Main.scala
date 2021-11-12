@@ -6,10 +6,19 @@ import akka.http.scaladsl.Http
 import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.io.StdIn
 import akka.http.scaladsl.server.Directives._
+import com.google.inject.{Guice, Key}
+import jp.co.keyno.sandbox.sample.application.controller.ApiSampleController
+import jp.co.keyno.sandbox.sample.Module
 
 object Main extends scala.App {
   implicit val system: ActorSystem = ActorSystem()
   implicit val executionContext: ExecutionContextExecutor = system.dispatcher
+
+  val injector = Guice.createInjector(new Module)
+  val controller = injector
+    .getInstance(
+      Key.get(classOf[ApiSampleController])
+    )
 
   val route =
     path("") {
@@ -22,6 +31,13 @@ object Main extends scala.App {
         get {
           parameters(Symbol("key").?) {
             case Some(key) if key.nonEmpty => complete(200, s"key: ${key}")
+            case _ => complete(400, "not exist key param")
+          }
+        }
+      } ~ path("controller") {
+        get {
+          parameters(Symbol("key").?) {
+            case Some(key) if key.nonEmpty => complete(200, controller.ok(key))
             case _ => complete(400, "not exist key param")
           }
         }

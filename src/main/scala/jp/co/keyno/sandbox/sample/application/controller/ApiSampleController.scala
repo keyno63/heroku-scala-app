@@ -1,8 +1,13 @@
 package jp.co.keyno.sandbox.sample.application.controller
 
-case class ApiSampleController() {
+import jp.co.keyno.sandbox.sample.usecase.service.ApiSampleService
 
+import javax.inject.Inject
+
+class ApiSampleController @Inject() (
+  service: ApiSampleService
+) {
   def ok(key: String): String = {
-    key
+    service.getValue(key)
   }
 }
