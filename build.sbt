@@ -19,6 +19,12 @@ lazy val akkaSample = project
     ),
   )
 
+addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
+addCommandAlias(
+  "check",
+  "all scalafmtSbtCheck scalafmtCheck test:scalafmtCheck"
+)
+
 Compile / herokuAppName := "heroku-scala-app"
 Compile / herokuJdkVersion := "17"
 run / fork := true
