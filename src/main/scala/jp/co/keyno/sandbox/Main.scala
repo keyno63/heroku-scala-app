@@ -3,10 +3,10 @@ package jp.co.keyno.sandbox
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 
-import scala.concurrent.{ExecutionContextExecutor, Future}
+import scala.concurrent.{ ExecutionContextExecutor, Future }
 import scala.io.StdIn
 import akka.http.scaladsl.server.Directives._
-import com.google.inject.{Guice, Key}
+import com.google.inject.{ Guice, Key }
 import jp.co.keyno.sandbox.sample.application.controller.ApiSampleController
 import jp.co.keyno.sandbox.sample.Module
 
@@ -55,8 +55,7 @@ object Main extends scala.App {
 //          Future.successful(ctx.request.toString())) flatMap {
 //          ret => provide(ret)
 //        }
-      }
-
+    }
 
   // start HTTP Server
   val port = 5000
