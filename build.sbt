@@ -7,7 +7,7 @@ scalaVersion := "2.13.7"
 val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.38.2"
 val calibanVersion = "1.2.2"
-val guiceVersion = "4.2.2"
+val guiceVersion = "5.0.1"
 
 lazy val akkaSample = project
   .in(file("."))
@@ -15,8 +15,10 @@ lazy val akkaSample = project
     libraryDependencies ++= Seq(
       "com.github.ghostdogpr" %% "caliban-akka-http"
     ).map(_ % calibanVersion) ++ Seq(
-      "de.heikoseeberger"            %% "akka-http-circe"               % akkaHttpCirce,
-    ),
+      "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirce,
+    ) ++ Seq(
+      "com.google.inject" % "guice" % guiceVersion,
+    )
   )
 
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
