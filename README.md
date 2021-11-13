@@ -4,7 +4,11 @@
 ### set up
 
 Use version below.
-- Java17+
+
+[comment]: <> (- Java17+)
+
+- Java11  
+guice が Java17 で動作しないため
 - Scala 2.13
 
 ### build
@@ -23,3 +27,8 @@ sbt test
 
 This repository is MIT License.  
 see [License](./LICENSE) file.
+
+Github Repository をつくるときにまずはじめるところ
+Scala　編
+
+
