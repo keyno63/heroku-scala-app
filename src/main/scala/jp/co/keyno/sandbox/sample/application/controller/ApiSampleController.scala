@@ -10,4 +10,8 @@ class ApiSampleController @Inject() (
   def ok(key: String): String = {
     service.getValue(key)
   }
+
+  def findIssueList: String = {
+    service.getIssueList.toString()
+  }
 }

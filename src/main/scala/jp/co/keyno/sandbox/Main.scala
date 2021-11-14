@@ -3,7 +3,7 @@ package jp.co.keyno.sandbox
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 
-import scala.concurrent.{ ExecutionContextExecutor, Future }
+import scala.concurrent.ExecutionContextExecutor
 import scala.io.StdIn
 import akka.http.scaladsl.server.Directives._
 import com.google.inject.{ Guice, Key }
@@ -37,7 +37,11 @@ object Main extends scala.App {
       } ~ path("controller") {
         get {
           parameters(Symbol("key").?) {
-            case Some(key) if key.nonEmpty => complete(200, controller.ok(key))
+            case Some(key) if key.nonEmpty =>
+              key match {
+                case "search" => complete(200, controller.findIssueList)
+                case _        => complete(200, controller.ok(key))
+              }
             case _ => complete(400, "not exist key param")
           }
         }
