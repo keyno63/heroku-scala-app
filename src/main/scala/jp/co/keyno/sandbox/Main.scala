@@ -45,6 +45,11 @@ object Main extends scala.App {
             case _ => complete(400, "not exist key param")
           }
         }
+      } ~ path("graphql") {
+        // not impl now
+        get {
+          complete(400, "not impl now")
+        }
       }
 //    } ~ extractRequestContext.flatMap { ctx =>
 //        if (ctx.request.uri.path == "apis") {
