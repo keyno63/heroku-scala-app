@@ -49,6 +49,8 @@ object Main extends scala.App {
         // not impl now
         get {
           complete(400, "not impl now")
+        } ~ post {
+          complete(400, "not impl now")
         }
       }
 //    } ~ extractRequestContext.flatMap { ctx =>
