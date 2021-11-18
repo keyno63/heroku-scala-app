@@ -46,7 +46,7 @@ object Main extends scala.App {
           }
         }
       } ~ path("graphql") {
-        // not impl now
+        // not impl now, will be graphql
         get {
           complete(400, "not impl now")
         } ~ post {
