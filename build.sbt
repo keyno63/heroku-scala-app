@@ -18,6 +18,50 @@ lazy val akkaSample = project
       "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirce,
     ) ++ Seq(
       "com.google.inject" % "guice" % guiceVersion,
+    ) ++ Seq(
+      "org.postgresql" % "postgresql" % "42.3.1",
+
+      "org.scalikejdbc" %% "scalikejdbc" % "4.0.+",
+      "org.scalikejdbc" %% "scalikejdbc-test" % "4.0.+" % "test",
+      "ch.qos.logback" % "logback-classic" % "1.2.+",
+      // test
+      "org.specs2" %% "specs2-core" % "4.13.0" % "test"
+    ),
+    dependencyOverrides += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0"
+  )
+
+lazy val scalikejdbc = project
+  .in(file("scalikejdbc"))
+  .settings(
+    scalaVersion := "2.13.7",
+    libraryDependencies ++= Seq(
+      "org.scalikejdbc" %% "scalikejdbc" % "4.0.+",
+      "org.scalikejdbc" %% "scalikejdbc-test" % "4.0.+" % "test",
+      "com.h2database" % "h2" % "1.4.+",
+      "ch.qos.logback" % "logback-classic" % "1.2.+"
+    )
+  )
+
+enablePlugins(ScalikejdbcPlugin)
+
+val akkaVersion = "2.5.20"
+val akkaHttpVersion = "10.1.7"
+val scalaTestVersion = "3.0.5"
+
+lazy val sprayJson = project
+  .in(file("./spray"))
+  .settings(
+    scalaVersion := "2.12.11",
+    libraryDependencies ++= Seq(
+      // akka streams
+      "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+      // akka http
+      "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion,
+      // testing
+      "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
+      "org.scalatest" %% "scalatest" % scalaTestVersion
     )
   )
 
@@ -27,6 +71,7 @@ addCommandAlias(
   "all scalafmtSbtCheck scalafmtCheck test:scalafmtCheck"
 )
 
+//ThisBuild / conflictManager := ConflictManager.latestRevision
 Compile / herokuAppName := "heroku-scala-app"
 Compile / herokuJdkVersion := "17"
 run / fork := true
