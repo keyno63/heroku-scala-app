@@ -18,6 +18,7 @@ lazy val akkaSample = project
       "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirce,
     ) ++ Seq(
       "com.google.inject" % "guice" % guiceVersion,
+      "com.typesafe" % "config" % "1.4.1"
     ) ++ Seq(
       "org.postgresql" % "postgresql" % "42.3.1",
       "org.scalikejdbc" %% "scalikejdbc" % "4.0.+",

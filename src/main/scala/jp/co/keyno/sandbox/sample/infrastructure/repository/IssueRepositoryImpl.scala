@@ -2,19 +2,22 @@ package jp.co.keyno.sandbox.sample.infrastructure.repository
 
 import jp.co.keyno.sandbox.sample.domain.issue.Issue
 import jp.co.keyno.sandbox.sample.domain.repository.IssueRepository
+import jp.co.keyno.sandbox.sample.domain.config.Config
 import scalikejdbc.{
   ConnectionPool,
   DB,
   scalikejdbcSQLInterpolationImplicitDef
 }
 
-class IssueRepositoryImpl extends IssueRepository {
+import javax.inject.Inject
 
-  Class.forName("org.postgresql.Driver")
+class IssueRepositoryImpl @Inject() (config: Config) extends IssueRepository {
+
+  Class.forName(config.db.driverName)
   ConnectionPool.singleton(
-    "jdbc:postgresql://localhost:15432/world",
-    "root",
-    "password"
+    config.db.url,
+    config.db.user,
+    config.db.password
   )
 
   def findAll(): List[Issue] = {
@@ -24,7 +27,7 @@ class IssueRepositoryImpl extends IssueRepository {
           Issue(
             rs.int("id"),
             rs.string("summary"),
-            rs.string("summary")
+            rs.string("description")
           )
         }
         .toList
@@ -39,7 +42,7 @@ class IssueRepositoryImpl extends IssueRepository {
           Issue(
             rs.int("id"),
             rs.string("summary"),
-            rs.string("summary")
+            rs.string("description")
           )
         }
         .toList
