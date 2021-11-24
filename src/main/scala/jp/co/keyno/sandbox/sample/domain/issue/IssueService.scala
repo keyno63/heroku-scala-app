@@ -6,7 +6,7 @@ import jp.co.keyno.sandbox.sample.infrastructure.repository.IssueRepositoryImpl
 import javax.inject.Inject
 
 class IssueService @Inject() (
- repository: IssueRepository
+  repository: IssueRepository
 ) {
 
   def getIssueList: List[Issue] = {
