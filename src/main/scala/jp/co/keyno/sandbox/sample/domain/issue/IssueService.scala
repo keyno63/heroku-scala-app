@@ -1,11 +1,15 @@
 package jp.co.keyno.sandbox.sample.domain.issue
 
-class IssueService {
+import jp.co.keyno.sandbox.sample.domain.repository.IssueRepository
+import jp.co.keyno.sandbox.sample.infrastructure.repository.IssueRepositoryImpl
 
-  // TODO: fetch from repository
+import javax.inject.Inject
+
+class IssueService @Inject() (
+ repository: IssueRepository
+) {
+
   def getIssueList: List[Issue] = {
-    (1 to 3)
-      .map(i => Issue(i, s"概要$i", s"説明$i"))
-      .toList
+    repository.findAll()
   }
 }
