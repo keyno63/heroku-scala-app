@@ -27,8 +27,3 @@ sbt test
 
 This repository is MIT License.  
 see [License](./LICENSE) file.
-
-Github Repository をつくるときにまずはじめるところ
-Scala　編
-
-
