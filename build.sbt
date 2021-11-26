@@ -6,7 +6,7 @@ scalaVersion := "2.13.7"
 
 val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.38.2"
-val calibanVersion = "1.2.2"
+val calibanVersion = "1.2.4"
 val guiceVersion = "5.0.1"
 
 lazy val akkaSample = project
@@ -27,7 +27,7 @@ lazy val akkaSample = project
       // test
       "org.specs2" %% "specs2-core" % "4.13.0" % Test,
       "org.scalameta" %% "munit" % "1.0.0-M1" % Test,
-      //"org.mockito" % "mockito-core" % "4.1.0" % Test
+      // "org.mockito" % "mockito-core" % "4.1.0" % Test
       "org.mockito" %% "mockito-scala" % "1.16.46" % Test
     ),
     dependencyOverrides += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0"
