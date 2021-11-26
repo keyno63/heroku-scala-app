@@ -25,7 +25,7 @@ lazy val akkaSample = project
       "org.scalikejdbc" %% "scalikejdbc-test" % "4.0.+" % "test",
       "ch.qos.logback" % "logback-classic" % "1.2.+",
       // test
-      "org.specs2" %% "specs2-core" % "4.13.0" % Test,
+      "org.specs2" %% "specs2-core" % "4.13.1" % Test,
       "org.scalameta" %% "munit" % "1.0.0-M1" % Test,
       // "org.mockito" % "mockito-core" % "4.1.0" % Test
       "org.mockito" %% "mockito-scala" % "1.16.46" % Test
