@@ -9,6 +9,7 @@ import akka.http.scaladsl.server.Directives._
 import com.google.inject.{ Guice, Key }
 import jp.co.keyno.sandbox.sample.application.controller.ApiSampleController
 import jp.co.keyno.sandbox.sample.Module
+import jp.co.keyno.sandbox.sample.domain.config.Config
 
 object Main extends scala.App {
   implicit val system: ActorSystem = ActorSystem()
@@ -18,6 +19,10 @@ object Main extends scala.App {
   val controller = injector
     .getInstance(
       Key.get(classOf[ApiSampleController])
+    )
+  val config = injector
+    .getInstance(
+      Key.get(classOf[Config])
     )
 
   val route =
@@ -73,7 +78,7 @@ object Main extends scala.App {
     }
 
   // start HTTP Server
-  val port = 5000
+  val port = config.system.port
   val bindingFuture = Http()
     .newServerAt("localhost", port)
     .bind(route)
