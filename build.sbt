@@ -6,6 +6,7 @@ scalaVersion := "2.13.7"
 
 val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.38.2"
+val tapirVersion = "0.19.0"
 val calibanVersion = "1.3.0"
 val guiceVersion = "5.0.1"
 
@@ -16,6 +17,7 @@ lazy val akkaSample = project
       "com.github.ghostdogpr" %% "caliban-akka-http"
     ).map(_ % calibanVersion) ++ Seq(
       "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirce,
+      "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % tapirVersion,
     ) ++ Seq(
       "com.google.inject" % "guice" % guiceVersion,
       "com.typesafe" % "config" % "1.4.1"

@@ -17,7 +17,7 @@ class Config {
 }
 
 case class ServerConfig(
-    port: Int
+  port: Int
 )
 
 case class DbConfig(

@@ -6,10 +6,19 @@ import akka.http.scaladsl.Http
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.StdIn
 import akka.http.scaladsl.server.Directives._
+import caliban.AkkaHttpAdapter
 import com.google.inject.{ Guice, Key }
 import jp.co.keyno.sandbox.sample.application.controller.ApiSampleController
 import jp.co.keyno.sandbox.sample.Module
 import jp.co.keyno.sandbox.sample.domain.config.Config
+import jp.co.keyno.sandbox.sample.domain.issue.{
+  IssueGraphqlZioApi,
+  IssueGraphqlZioService
+}
+import jp.co.keyno.sandbox.sample.domain.issue.IssueGraphqlZioService.IssueGraphqlZioService
+import jp.co.keyno.sandbox.sample.domain.repository.IssueRepository
+import sttp.tapir.json.circe._
+import zio.Runtime
 
 object Main extends scala.App {
   implicit val system: ActorSystem = ActorSystem()
@@ -24,6 +33,16 @@ object Main extends scala.App {
     .getInstance(
       Key.get(classOf[Config])
     )
+
+  val repository = injector
+    .getInstance(
+      Key.get(classOf[IssueRepository])
+    )
+
+  implicit val runtime: Runtime[IssueGraphqlZioService] =
+    Runtime.unsafeFromLayer(IssueGraphqlZioService.make(repository))
+
+  val interpreter = runtime.unsafeRun(IssueGraphqlZioApi.api.interpreter)
 
   val route =
     path("") {
@@ -55,12 +74,7 @@ object Main extends scala.App {
           }
         }
       } ~ path("graphql") {
-        // not impl now, will be graphql
-        get {
-          complete(400, "not impl now")
-        } ~ post {
-          complete(400, "not impl now")
-        }
+        AkkaHttpAdapter.makeHttpService(interpreter)
       }
 //    } ~ extractRequestContext.flatMap { ctx =>
 //        if (ctx.request.uri.path == "apis") {
