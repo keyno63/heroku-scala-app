@@ -7,6 +7,7 @@ import javax.inject.Inject
 trait ApiSampleService {
   def getValue(key: String): String
   def getIssueList: List[Issue]
+  def getIssueListById(id: Int): Option[Issue]
 }
 
 class ApiSampleServiceImpl @Inject() (issueService: IssueService)
@@ -14,5 +15,8 @@ class ApiSampleServiceImpl @Inject() (issueService: IssueService)
   override def getValue(key: String): String = s"value: $key"
   override def getIssueList: List[Issue] = {
     issueService.getIssueList
+  }
+  override def getIssueListById(id: Int): Option[Issue] = {
+    issueService.getIssueListById(id)
   }
 }

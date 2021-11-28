@@ -12,4 +12,8 @@ class IssueService @Inject() (
   def getIssueList: List[Issue] = {
     repository.findAll()
   }
+
+  def getIssueListById(id: Int): Option[Issue] = {
+    repository.findIssue(id)
+  }
 }

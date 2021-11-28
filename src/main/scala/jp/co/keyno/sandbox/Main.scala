@@ -36,12 +36,16 @@ object Main extends scala.App {
         }
       } ~ path("controller") {
         get {
-          parameters(Symbol("key").?) {
-            case Some(key) if key.nonEmpty =>
+          parameters(Symbol("key").?, Symbol("type").?) {
+            case (Some(key), None) if key.nonEmpty =>
               key match {
                 case "search" => complete(200, controller.findIssueList)
                 case _        => complete(200, controller.ok(key))
               }
+            case (Some(key), Some(_type)) if _type.nonEmpty =>
+              key.toIntOption
+                .map(v => complete(200, controller.findIssueListById(v)))
+                .getOrElse(complete(400, s"invalid key type [$key]"))
             case _ => complete(400, "not exist key param")
           }
         }

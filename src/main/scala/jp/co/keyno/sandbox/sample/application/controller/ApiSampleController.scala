@@ -14,4 +14,8 @@ class ApiSampleController @Inject() (
   def findIssueList: String = {
     service.getIssueList.toString()
   }
+
+  def findIssueListById(id: Int): String = {
+    service.getIssueListById(id).toString
+  }
 }

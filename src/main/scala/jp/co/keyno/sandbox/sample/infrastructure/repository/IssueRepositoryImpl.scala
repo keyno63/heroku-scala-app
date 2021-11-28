@@ -35,7 +35,7 @@ class IssueRepositoryImpl @Inject() (config: Config) extends IssueRepository {
     }
   }
 
-  def findIssue(id: Int): List[Issue] = {
+  def findIssue(id: Int): Option[Issue] = {
     DB readOnly { implicit session =>
       sql"SELECT id, summary, description FROM issues WHERE id = ${id}"
         .map { rs =>
@@ -45,7 +45,7 @@ class IssueRepositoryImpl @Inject() (config: Config) extends IssueRepository {
             rs.string("description")
           )
         }
-        .toList
+        .single
         .apply()
     }
   }
