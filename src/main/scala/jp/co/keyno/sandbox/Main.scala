@@ -101,4 +101,11 @@ object Main extends scala.App {
   bindingFuture
     .flatMap(_.unbind())
     .onComplete(_ => system.terminate())
+  println(s"start to server. port = [$port]")
+
+  // To stop server
+  StdIn.readLine()
+  bindingFuture
+    .flatMap(_.unbind())
+    .onComplete(_ => system.terminate())
 }
