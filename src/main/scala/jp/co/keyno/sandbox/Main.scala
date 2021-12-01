@@ -29,10 +29,6 @@ object Main extends scala.App {
     .getInstance(
       Key.get(classOf[ApiSampleController])
     )
-  val gqlApi = injector
-    .getInstance(
-      Key.get(classOf[IssueGraphqlApi])
-    )
   val config = injector
     .getInstance(
       Key.get(classOf[Config])
