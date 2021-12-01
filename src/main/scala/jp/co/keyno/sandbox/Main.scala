@@ -29,6 +29,10 @@ object Main extends scala.App {
     .getInstance(
       Key.get(classOf[ApiSampleController])
     )
+  val gqlApi = injector
+    .getInstance(
+      Key.get(classOf[IssueGraphqlApi])
+    )
   val config = injector
     .getInstance(
       Key.get(classOf[Config])
@@ -97,11 +101,6 @@ object Main extends scala.App {
     .newServerAt("localhost", port)
     .bind(route)
   println(s"start server. port=[${port}]")
-  StdIn.readLine()
-  bindingFuture
-    .flatMap(_.unbind())
-    .onComplete(_ => system.terminate())
-  println(s"start to server. port = [$port]")
 
   // To stop server
   StdIn.readLine()

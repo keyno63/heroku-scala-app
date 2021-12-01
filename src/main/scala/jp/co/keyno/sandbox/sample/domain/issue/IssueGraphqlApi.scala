@@ -17,13 +17,26 @@ object IssueGraphqlZioApi extends GenericSchema[IssueGraphqlZioService] {
     issue: IssueQueryArgs => URIO[IssueGraphqlZioService, Option[Issue]]
   )
 
+  case class Mutation(
+    issue: IssueMutationArgs => URIO[IssueGraphqlZioService, Long]
+   )
+
   val api: GraphQL[IssueGraphqlZioService] = graphQL(
     RootResolver(
       Queries(
         _ => IssueGraphqlZioService.getIssues,
         args => IssueGraphqlZioService.findIssue(args.id)
+      ),
+      Mutation(
+        args => IssueGraphqlZioService.insertIssue(args.issue)
       )
     )
   ) @@
     maxDepth(30)
+}
+
+trait IssueGraphqlApiTrait {
+  case class IssuesQueryArgs()
+  case class IssueQueryArgs(id: Int)
+  case class IssueMutationArgs(issue: Issue)
 }

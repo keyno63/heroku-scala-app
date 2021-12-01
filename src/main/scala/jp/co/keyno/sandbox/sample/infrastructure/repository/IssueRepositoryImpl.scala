@@ -49,4 +49,17 @@ class IssueRepositoryImpl @Inject() (config: Config) extends IssueRepository {
         .apply()
     }
   }
+
+  override def insertIssue(issue: Issue): Long = {
+    DB autoCommit { implicit session =>
+      sql"""INSERT
+            INTO
+                issues
+                (id, summary, description)
+            VALUES
+                (${issue.id}, ${issue.summary}, ${issue.desc})
+         """.updateAndReturnGeneratedKey
+        .apply()
+    }
+  }
 }
