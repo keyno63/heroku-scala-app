@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        java: [ '15' ]
+        java: [ '11' ]
         scala: [ '2.13.4' ]
     runs-on: ubuntu-latest
     steps:
