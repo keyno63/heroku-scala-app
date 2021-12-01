@@ -25,7 +25,7 @@ sbt test
 
 ## Sample Request
 see file:  
-[Request Sample Doc](./doc/sample.md)
+[Request Sample Doc](./doc/request/sample.md)
 
 ## LICENSE
 
