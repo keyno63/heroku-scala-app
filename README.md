@@ -51,6 +51,7 @@ curl -X POST "http://<server domain>:5000/api/graphql"
 `
 ```
 
+then, response will be below:
 ```shell
 < HTTP/1.1 200 OK
 < content-type:	application/json
