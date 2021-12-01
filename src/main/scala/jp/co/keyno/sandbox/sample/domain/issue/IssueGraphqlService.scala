@@ -9,7 +9,7 @@ object IssueGraphqlZioService {
   trait GraphqlZioService {
     def getIssues: UIO[List[Issue]]
     def findIssue(id: Int): UIO[Option[Issue]]
-    def insertIssue(issue: Issue): UIO[Long]
+    def insertIssue(issue: InputIssue): UIO[Long]
   }
 
   def getIssues: URIO[IssueGraphqlZioService, List[Issue]] =
@@ -18,7 +18,7 @@ object IssueGraphqlZioService {
   def findIssue(id: Int): URIO[IssueGraphqlZioService, Option[Issue]] =
     URIO.accessM(_.get.findIssue(id))
 
-  def insertIssue(issue: Issue): URIO[IssueGraphqlZioService, Long] =
+  def insertIssue(issue: InputIssue): URIO[IssueGraphqlZioService, Long] =
     URIO.accessM(_.get.insertIssue(issue))
 
   def make(diRepository: IssueRepository): ULayer[IssueGraphqlZioService] =
@@ -28,7 +28,7 @@ object IssueGraphqlZioService {
         ZIO.succeed(repository.findAll())
       override def findIssue(id: Int): UIO[Option[Issue]] =
         ZIO.succeed(repository.findIssue(id))
-      override def insertIssue(issue: Issue): UIO[Long] =
+      override def insertIssue(issue: InputIssue): UIO[Long] =
         ZIO.succeed(repository.insertIssue(issue))
     })
 }

@@ -7,9 +7,9 @@ import caliban.wrappers.Wrappers.maxDepth
 import jp.co.keyno.sandbox.sample.domain.issue.IssueGraphqlZioService.IssueGraphqlZioService
 import zio.URIO
 
-object IssueGraphqlZioApi extends GenericSchema[IssueGraphqlZioService] {
-  case class IssuesQueryArgs()
-  case class IssueQueryArgs(id: Int)
+object IssueGraphqlZioApi
+  extends GenericSchema[IssueGraphqlZioService]
+  with IssueGraphqlApiTrait {
 
   // TODO: implement Mutation/Subscribe
   case class Queries(
@@ -18,7 +18,8 @@ object IssueGraphqlZioApi extends GenericSchema[IssueGraphqlZioService] {
   )
 
   case class Mutation(
-    issue: IssueMutationArgs => URIO[IssueGraphqlZioService, Long]
+    issue: IssueMutationArgs => URIO[IssueGraphqlZioService, Long],
+    issueParams: IssueParamsMutationArgs => URIO[IssueGraphqlZioService, Long]
    )
 
   val api: GraphQL[IssueGraphqlZioService] = graphQL(
@@ -28,7 +29,8 @@ object IssueGraphqlZioApi extends GenericSchema[IssueGraphqlZioService] {
         args => IssueGraphqlZioService.findIssue(args.id)
       ),
       Mutation(
-        args => IssueGraphqlZioService.insertIssue(args.issue)
+        args => IssueGraphqlZioService.insertIssue(args.issue),
+        args => IssueGraphqlZioService.insertIssue(InputIssue(args.summary, args.desc))
       )
     )
   ) @@
@@ -38,5 +40,6 @@ object IssueGraphqlZioApi extends GenericSchema[IssueGraphqlZioService] {
 trait IssueGraphqlApiTrait {
   case class IssuesQueryArgs()
   case class IssueQueryArgs(id: Int)
-  case class IssueMutationArgs(issue: Issue)
+  case class IssueMutationArgs(issue: InputIssue)
+  case class IssueParamsMutationArgs(summary: String, desc: String)
 }

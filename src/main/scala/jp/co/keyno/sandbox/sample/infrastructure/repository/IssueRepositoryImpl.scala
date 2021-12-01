@@ -1,6 +1,6 @@
 package jp.co.keyno.sandbox.sample.infrastructure.repository
 
-import jp.co.keyno.sandbox.sample.domain.issue.Issue
+import jp.co.keyno.sandbox.sample.domain.issue.{InputIssue, Issue}
 import jp.co.keyno.sandbox.sample.domain.repository.IssueRepository
 import jp.co.keyno.sandbox.sample.domain.config.Config
 import scalikejdbc.{
@@ -50,14 +50,14 @@ class IssueRepositoryImpl @Inject() (config: Config) extends IssueRepository {
     }
   }
 
-  override def insertIssue(issue: Issue): Long = {
+  override def insertIssue(issue: InputIssue): Long = {
     DB autoCommit { implicit session =>
       sql"""INSERT
             INTO
                 issues
-                (id, summary, description)
+                (summary, description)
             VALUES
-                (${issue.id}, ${issue.summary}, ${issue.desc})
+                (${issue.summary}, ${issue.desc})
          """.updateAndReturnGeneratedKey
         .apply()
     }
