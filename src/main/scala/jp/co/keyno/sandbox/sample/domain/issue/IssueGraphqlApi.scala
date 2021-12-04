@@ -20,7 +20,7 @@ object IssueGraphqlZioApi
   case class Mutation(
     issue: IssueMutationArgs => URIO[IssueGraphqlZioService, Long],
     issueParams: IssueParamsMutationArgs => URIO[IssueGraphqlZioService, Long]
-   )
+  )
 
   val api: GraphQL[IssueGraphqlZioService] = graphQL(
     RootResolver(
@@ -30,7 +30,10 @@ object IssueGraphqlZioApi
       ),
       Mutation(
         args => IssueGraphqlZioService.insertIssue(args.issue),
-        args => IssueGraphqlZioService.insertIssue(InputIssue(args.summary, args.desc))
+        args =>
+          IssueGraphqlZioService.insertIssue(
+            InputIssue(args.summary, args.desc)
+          )
       )
     )
   ) @@
