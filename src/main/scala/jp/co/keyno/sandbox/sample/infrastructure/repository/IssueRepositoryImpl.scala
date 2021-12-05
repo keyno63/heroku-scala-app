@@ -1,6 +1,6 @@
 package jp.co.keyno.sandbox.sample.infrastructure.repository
 
-import jp.co.keyno.sandbox.sample.domain.issue.{InputIssue, Issue}
+import jp.co.keyno.sandbox.sample.domain.issue.{ InputIssue, Issue }
 import jp.co.keyno.sandbox.sample.domain.repository.IssueRepository
 import jp.co.keyno.sandbox.sample.domain.config.Config
 import scalikejdbc.{
