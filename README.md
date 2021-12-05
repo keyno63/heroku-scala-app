@@ -8,7 +8,7 @@ Use version below.
 [comment]: <> (- Java17+)
 
 - Java11  
-guice が Java17 で動作しないため
+because guice do not run on JDK17
 - Scala 2.13
 
 ### build
