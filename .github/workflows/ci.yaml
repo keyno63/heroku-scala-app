@@ -46,7 +46,7 @@ jobs:
       - name: Setup JDK
         uses: olafurpg/setup-scala@v13
       - name: Cache SBT
-        uses: coursier/cache-action@v3
+        uses: coursier/cache-action@v6
         with:
           extraKey: scala-${{ matrix.scala }}
       - name: check compile
