@@ -32,7 +32,7 @@ lazy val akkaSample = project
       "org.scalameta" %% "munit" % "1.0.0-M1" % Test,
       "dev.zio" %% "zio-test" % zioVersion % Test,
       "org.mockito" % "mockito-core" % "4.1.0" % Test,
-      "org.mockito" %% "mockito-scala" % "1.16.46" % Test
+      "org.mockito" %% "mockito-scala" % "1.16.55" % Test
     ),
     dependencyOverrides += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0",
     testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
