@@ -21,7 +21,7 @@ lazy val akkaSample = project
       "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % tapirVersion,
     ) ++ Seq(
       "com.google.inject" % "guice" % guiceVersion,
-      "com.typesafe" % "config" % "1.4.1"
+      "com.typesafe" % "config" % "1.4.2"
     ) ++ Seq(
       "org.postgresql" % "postgresql" % "42.3.1",
       "org.scalikejdbc" %% "scalikejdbc" % "4.0.+",
