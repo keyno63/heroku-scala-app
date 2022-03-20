@@ -1,5 +1,3 @@
 package jp.co.keyno.sandbox.sample.domain.issue
 
-object IssueGraphqlApi {
-
-}
+object IssueGraphqlApi {}
