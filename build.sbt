@@ -5,7 +5,7 @@ version := "0.1"
 scalaVersion := "2.13.8"
 
 val circeVersion = "0.14.1"
-val akkaHttpCirce = "1.38.2"
+val akkaHttpCirce = "1.39.2"
 val tapirVersion = "0.19.4"
 val calibanVersion = "1.3.3"
 val guiceVersion = "5.0.1"
