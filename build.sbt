@@ -23,7 +23,7 @@ lazy val akkaSample = project
       "com.google.inject" % "guice" % guiceVersion,
       "com.typesafe" % "config" % "1.4.1"
     ) ++ Seq(
-      "org.postgresql" % "postgresql" % "42.3.1",
+      "org.postgresql" % "postgresql" % "42.3.3",
       "org.scalikejdbc" %% "scalikejdbc" % "4.0.+",
       "org.scalikejdbc" %% "scalikejdbc-test" % "4.0.+" % "test",
       "ch.qos.logback" % "logback-classic" % "1.2.+",
