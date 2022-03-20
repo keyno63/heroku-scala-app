@@ -2,7 +2,7 @@ name := "heroku-scala-app"
 
 version := "0.1"
 
-scalaVersion := "2.13.7"
+scalaVersion := "2.13.8"
 
 val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.38.2"
