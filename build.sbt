@@ -29,7 +29,7 @@ lazy val akkaSample = project
       "ch.qos.logback" % "logback-classic" % "1.2.+",
       // test
       "org.specs2" %% "specs2-core" % "4.13.3" % Test,
-      "org.scalameta" %% "munit" % "1.0.0-M2" % Test,
+      "org.scalameta" %% "munit" % "1.0.0-M3" % Test,
       "dev.zio" %% "zio-test" % zioVersion % Test,
       "org.mockito" % "mockito-core" % "4.4.0" % Test,
       "org.mockito" %% "mockito-scala" % "1.16.55" % Test
