@@ -9,7 +9,7 @@ val akkaHttpCirce = "1.39.2"
 val tapirVersion = "0.19.4"
 val calibanVersion = "1.3.3"
 val guiceVersion = "5.0.1"
-val zioVersion = "1.0.13"
+val zioVersion = "1.0.15"
 
 lazy val akkaSample = project
   .in(file("."))
