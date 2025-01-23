@@ -8,7 +8,7 @@ val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.39.2"
 val tapirVersion = "0.20.2"
 val calibanVersion = "1.4.1"
-val guiceVersion = "5.0.1"
+val guiceVersion = "5.1.0"
 val zioVersion = "1.0.15"
 
 lazy val akkaSample = project
