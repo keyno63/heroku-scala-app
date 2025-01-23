@@ -6,10 +6,10 @@ scalaVersion := "2.13.8"
 
 val circeVersion = "0.14.1"
 val akkaHttpCirce = "1.39.2"
-val tapirVersion = "0.19.4"
+val tapirVersion = "0.20.2"
 val calibanVersion = "1.4.1"
 val guiceVersion = "5.0.1"
-val zioVersion = "1.0.13"
+val zioVersion = "1.0.15"
 
 lazy val akkaSample = project
   .in(file("."))
@@ -23,16 +23,16 @@ lazy val akkaSample = project
       "com.google.inject" % "guice" % guiceVersion,
       "com.typesafe" % "config" % "1.4.2"
     ) ++ Seq(
-      "org.postgresql" % "postgresql" % "42.3.3",
+      "org.postgresql" % "postgresql" % "42.3.6",
       "org.scalikejdbc" %% "scalikejdbc" % "4.0.+",
       "org.scalikejdbc" %% "scalikejdbc-test" % "4.0.+" % "test",
       "ch.qos.logback" % "logback-classic" % "1.2.+",
       // test
-      "org.specs2" %% "specs2-core" % "4.13.3" % Test,
-      "org.scalameta" %% "munit" % "1.0.0-M2" % Test,
+      "org.specs2" %% "specs2-core" % "4.16.1" % Test,
+      "org.scalameta" %% "munit" % "1.0.0-M6" % Test,
       "dev.zio" %% "zio-test" % zioVersion % Test,
-      "org.mockito" % "mockito-core" % "4.4.0" % Test,
-      "org.mockito" %% "mockito-scala" % "1.16.55" % Test
+      "org.mockito" % "mockito-core" % "4.6.1" % Test,
+      "org.mockito" %% "mockito-scala" % "1.17.7" % Test
     ),
     dependencyOverrides += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0",
     testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
